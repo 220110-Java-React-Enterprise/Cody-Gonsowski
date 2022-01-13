@@ -3,18 +3,18 @@ package com.revature.project0;
 /**
  * Simple Account class to handle user data and transactions.
  */
-public class Account {
-    String username;
-    double balance;
+public class BankAccount {
+    private double balance;
+
 
     /**
      * Default constructor.
      *   Creates an account of balance 0 and name name.
      */
-    public Account() {
-        this.username = "name";
+    public BankAccount() {
         this.balance = 0;
     }
+
 
     /**
      * Parameterized constructor.
@@ -22,10 +22,10 @@ public class Account {
      * @param username username to set for account
      * @param balance initial balance of account
      */
-    public Account(String username, double balance) {
-        this.username = username;
-        this.balance = balance;
+    public BankAccount(double balance) {
+        setBalance(balance);
     }
+
 
     /**
      * Gets current account balance.
@@ -35,13 +35,15 @@ public class Account {
         return this.balance;
     }
 
+
     /**
-     * Gets username of account.
-     * @return username of account
+     * Sets current account balance.
+     * @return current account balance
      */
-    public String getUsername() {
-        return this.username;
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
+
 
     /**
      * Deposits an amount to account's balance if amount is positive.
@@ -58,6 +60,7 @@ public class Account {
         this.balance += amount;
     }
     
+
     /**
      * Withdrawals an amount from account's balance if amount is positive
      *   and the account's balance is sufficient.
