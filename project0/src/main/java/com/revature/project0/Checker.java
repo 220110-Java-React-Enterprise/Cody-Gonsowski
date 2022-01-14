@@ -24,7 +24,7 @@ public class Checker {
         // determine what patternString given a type
         //   invalid type returns false
         if (type.matches("email")) {
-            patternString = "[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z]+";
+            patternString = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
         } else if (type.matches("firstName") | type.matches("lastName")) {
             patternString = "[a-zA-Z]+";
         } else {
@@ -32,7 +32,7 @@ public class Checker {
         }
 
         // create pattern & matcher given patternString
-        Pattern pattern = Pattern.compile(patternString);
+        Pattern pattern = Pattern.compile(patternString, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(str);
 
         // return result of matcher
