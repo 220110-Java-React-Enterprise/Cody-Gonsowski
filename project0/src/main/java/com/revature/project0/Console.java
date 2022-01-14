@@ -9,7 +9,7 @@ public class Console {
     public static void main(String[] args) {
         boolean hasQuit = false;
         char choice;
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
         do {
             // print menu
@@ -17,7 +17,7 @@ public class Console {
 
             // get first character of next user input cluster
             System.out.print("Please input your selection and press Enter: ");
-            choice = scanner.next().toCharArray()[0];
+            choice = sc.nextLine().toCharArray()[0];
 
             // perform action based on
             switch(choice) {
@@ -43,6 +43,72 @@ public class Console {
                 
                 //TODO registers a new user account
                 case 'r':
+                    UserAccount user = new UserAccount();
+                    String str;
+                    boolean isValid = false;
+
+                    //TODO first + last name checking needs fixing
+                    // repeatedly ask for first name until valid
+                    do {
+                        System.out.print("Enter your first name: ");
+                        str = sc.nextLine();
+
+                        isValid = user.setFirstName(str);
+
+                        if (!isValid) {
+                            System.out.println("Please restrict to standard alphabetic characters.");
+                        }
+                    } while (!isValid);
+
+                    isValid = false;
+
+                    // repeatedly ask for last name until valid
+                    do {
+                        System.out.print("Enter your last name: ");
+                        str = sc.nextLine();
+
+                        isValid = user.setLastName(str);
+
+                        if (!isValid) {
+                            System.out.println("Please restrict to standard alphabetic characters.");
+                        }
+                    } while (!isValid);
+
+                    isValid = false;
+
+                    // repeatedly ask for email until valid
+                    do {
+                        System.out.print("Enter your email: ");
+                        str = sc.nextLine();
+
+                        isValid = user.setEmail(str);
+
+                        if (!isValid) {
+                            System.out.println("Expected format: name@place.com");
+                        }
+                    } while (!isValid);
+
+                    isValid = false;
+
+                    // repeatedly ask for password until matching
+                    do {
+                        System.out.print("Enter your password: ");
+                        str = sc.nextLine();
+                        
+                        System.out.print("Confirm your password: ");
+
+                        // check if strings are the same
+                        if (str.equals(sc.nextLine())) {
+                            isValid = true;
+                        }
+
+                        if (!isValid) {
+                            System.out.println("Passwords must match");
+                        }
+                    } while (!isValid);
+
+                    System.out.printf("Name: %s %s\n", user.getFirstName(), user.getLastName());
+                    System.out.printf("Email: %s\n", user.getEmail());
                     break;
                 
                 // exits menu loop
@@ -55,7 +121,7 @@ public class Console {
         } while (!hasQuit); // loop while the user has not quit
 
         // close scanner used for user input
-        scanner.close();
+        sc.close();
     }
 
 
