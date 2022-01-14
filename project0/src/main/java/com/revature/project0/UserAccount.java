@@ -4,7 +4,7 @@ package com.revature.project0;
  * Simple Account class to handle user data and transactions.
  */
 public class UserAccount {
-    private String username;
+    private String name;
     private String email;
     private String password;
     private CustomArrayList<BankAccount> bankAccounts;
@@ -15,7 +15,7 @@ public class UserAccount {
      *   Creates an account of balance 0 and name name.
      */
     public UserAccount() {
-        this.username = "name";
+        this.name = "name";
         this.email = "name@name.name";
         this.password = "password";
         this.bankAccounts = new CustomArrayList<>();
@@ -24,34 +24,34 @@ public class UserAccount {
 
     /**
      * Parameterized constructor.
-     *   Creates an account when given a username and an initial balance.
-     * @param username username to set for account
+     *   Creates an account when given a name and an initial balance.
+     * @param name name to set for account
      * @param balance initial balance of account
      */
-    public UserAccount(String username, String email, double balance) {
-        setUsername(username);
+    public UserAccount(String name, String email, double balance) {
+        setName(name);
         setEmail(email);
     }
 
 
     /**
-     * Gets username of account.
-     * @return username of account
+     * Gets name of account.
+     * @return name of account
      */
-    public String getUsername() {
-        return this.username;
+    public String getName() {
+        return this.name;
     }
 
 
     /**
-     * Sets username of account if valid.
-     * @param username username of account
-     * @return true  - username set successfully
-     *         false - username not set successfully
+     * Sets name of account if valid.
+     * @param name name of account
+     * @return true  - name set successfully
+     *         false - name not set successfully
      */
-    public boolean setUsername(String username) {
-        if (Checker.isValid(username, "name")) {
-            this.username = username;
+    public boolean setName(String name) {
+        if (Checker.isValid(name, "name")) {
+            this.name = name;
             return true;
         }
 
