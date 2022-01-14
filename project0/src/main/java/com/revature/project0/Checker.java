@@ -25,7 +25,7 @@ public class Checker {
         //   invalid type returns false
         if (type.matches("email")) {
             patternString = "[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z]+";
-        } else if (type.matches("name")) {
+        } else if (type.matches("firstName") | type.matches("lastName")) {
             patternString = "[a-zA-Z]+";
         } else {
             return false;

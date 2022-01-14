@@ -4,7 +4,8 @@ package com.revature.project0;
  * Simple Account class to handle user data and transactions.
  */
 public class UserAccount {
-    private String name;
+    private String firstName;
+    private String lastName;
     private String email;
     private String password;
     private CustomArrayList<BankAccount> bankAccounts;
@@ -15,7 +16,8 @@ public class UserAccount {
      *   Creates an account of balance 0 and name name.
      */
     public UserAccount() {
-        this.name = "name";
+        this.firstName = "firstname";
+        this.lastName = "lastname";
         this.email = "name@name.name";
         this.password = "password";
         this.bankAccounts = new CustomArrayList<>();
@@ -25,33 +27,60 @@ public class UserAccount {
     /**
      * Parameterized constructor.
      *   Creates an account when given a name and an initial balance.
-     * @param name name to set for account
-     * @param balance initial balance of account
+     * @param firstName first name to set for user
+     * @param lastName last name to set for user
+     * @param email email to set for account
      */
-    public UserAccount(String name, String email, double balance) {
-        setName(name);
+    public UserAccount(String firstName, String lastName, String email) {
+        setFirstName(firstName);
+        setLastName(lastName);
         setEmail(email);
     }
 
 
     /**
-     * Gets name of account.
-     * @return name of account
+     * Gets first name of user.
+     * @return first name of user
      */
-    public String getName() {
-        return this.name;
+    public String getFirstName() {
+        return this.firstName;
     }
 
 
     /**
-     * Sets name of account if valid.
-     * @param name name of account
-     * @return true  - name set successfully
-     *         false - name not set successfully
+     * Sets first name of user if valid.
+     * @param name name of user
+     * @return true  - first name set successfully
+     *         false - first name not set successfully
      */
-    public boolean setName(String name) {
-        if (Checker.isValid(name, "name")) {
-            this.name = name;
+    public boolean setFirstName(String firstName) {
+        if (Checker.isValid(firstName, "firstName")) {
+            this.firstName = firstName;
+            return true;
+        }
+
+        return false;
+    }
+
+
+    /**
+     * Gets last name of user.
+     * @return last name of user
+     */
+    public String getLastName() {
+        return this.lastName;
+    }
+
+
+    /**
+     * Sets last name of user if valid.
+     * @param name last name of user
+     * @return true  - last name set successfully
+     *         false - last name not set successfully
+     */
+    public boolean setLastName(String lastName) {
+        if (Checker.isValid(lastName, "lastName")) {
+            this.lastName = lastName;
             return true;
         }
 
