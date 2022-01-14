@@ -39,6 +39,7 @@ public class CustomArrayList<E> implements CustomListInterface<E> {
      * array large enough to fit them.
      * @param e
      */
+    @SuppressWarnings("unchecked")
     public CustomArrayList(E... e) {
         maxSize = size = e.length;
         array = new Object[size];
@@ -100,6 +101,7 @@ public class CustomArrayList<E> implements CustomListInterface<E> {
      * @throws IndexOutOfBoundsException
      */
     @Override
+    @SuppressWarnings("unchecked")
     public E get(int index) throws IndexOutOfBoundsException {
         // index out of bounds
         if (index >= size) {
@@ -107,7 +109,6 @@ public class CustomArrayList<E> implements CustomListInterface<E> {
         }
 
         // cast to generic type
-        //   ignore the warning
         return (E)array[index];
     }
 
