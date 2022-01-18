@@ -135,6 +135,10 @@ public class UserAccount {
      * Prints a list of all associated bank accounts alongside their balances.
      */
     public void printBankAccounts() {
-        //TODO implement this
+        for (int i = 0; i < bankAccounts.size(); i++) {
+            //TODO finish implementing
+            BankAccount tempBankAcc = bankAccounts.get(i);
+            System.out.println(tempBankAcc.getBalance());
+        }
     }
 }
