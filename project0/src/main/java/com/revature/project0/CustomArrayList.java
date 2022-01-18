@@ -40,6 +40,7 @@ public class CustomArrayList<E> implements CustomListInterface<E> {
      * @param e
      */
     @SuppressWarnings("unchecked")
+    //! heap pollution via varargs parameter
     public CustomArrayList(E... e) {
         maxSize = size = e.length;
         array = new Object[size];
@@ -78,16 +79,28 @@ public class CustomArrayList<E> implements CustomListInterface<E> {
      * @throws IndexOutOfBoundsException
      */
     @Override
+    @SuppressWarnings("unchecked")
     public void add(E e, int index) throws IndexOutOfBoundsException {
-        //TODO check for grow array + needs to shift other elements
         // index out of bounds
-        if (index >= size) {
+        if (index >= this.size) {
             throw new IndexOutOfBoundsException("ERROR: Index is out of bounds!");
         }
 
-        // nothing already at index, size needs to be updated
-        if (get(index).equals(null)) {
-            size++;
+        // grow array if the new size would be too large
+        if (this.size + 1 >= this.maxSize) {
+            growArray();
+        }
+
+        // update size
+        this.size++;
+
+        // shift elements
+        E tempElement;
+        for (int i = index; i < this.size - 1; i++) {
+            //! typecast is suppressed
+            tempElement = (E)array[i];
+            array[i] = array[i + 1];
+            array[i + 1] = tempElement;
         }
 
         // update object at index to e
@@ -110,6 +123,7 @@ public class CustomArrayList<E> implements CustomListInterface<E> {
         }
 
         // cast to generic type
+        //! typecast is suppressed
         return (E)array[index];
     }
 
