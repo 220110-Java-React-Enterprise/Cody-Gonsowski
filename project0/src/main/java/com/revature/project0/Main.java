@@ -5,15 +5,16 @@ import java.util.Scanner;
 /**
  * Driving class of the console bank program.
  */
-public class Console {
+public class Main {
     public static void main(String[] args) {
         boolean hasQuit = false;
         char choice;
         Scanner sc = new Scanner(System.in);
 
+        // TODO use ViewManager method?
         do {
             // print menu
-            Console.printMenu();
+            Main.printMenu();
 
             // get first character of next user input cluster
             System.out.print("Please input your selection and press Enter: ");

@@ -72,13 +72,14 @@ public class CustomArrayList<E> implements CustomListInterface<E> {
 
     /**
      * Adds object at specified index, advancing the size of the underlying array. This will
-     * overwrite an existing element, rather than shift them
+     * require us to shift all later elements further down the index order
      * @param index index location where object will be inserted
      * @param e element to be inserted
      * @throws IndexOutOfBoundsException
      */
     @Override
     public void add(E e, int index) throws IndexOutOfBoundsException {
+        //TODO check for grow array + needs to shift other elements
         // index out of bounds
         if (index >= size) {
             throw new IndexOutOfBoundsException("ERROR: Index is out of bounds!");
@@ -144,11 +145,13 @@ public class CustomArrayList<E> implements CustomListInterface<E> {
 
 
     /**
-     * Removes object at specified index from underlying array, setting to null.
+     * Removes object at specified index from underlying array, we will then
+     * need to shift the remaining elements up in the index order to fill in the gap
      * @param index index of object to remove from array
      */
     @Override
     public void remove(int index) {
+        //TODO fix this - needs to resize + remove null
         // set array at index to null
         array[index] = null;
 
