@@ -1,4 +1,4 @@
-package com.revature.project0;
+import list.CustomArrayList;
 
 /**
  * Simple Account class to handle user data and transactions.

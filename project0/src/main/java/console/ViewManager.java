@@ -1,4 +1,4 @@
-package com.revature.project0.Console;
+package console;
 
 import java.util.LinkedList;
 import java.util.List;

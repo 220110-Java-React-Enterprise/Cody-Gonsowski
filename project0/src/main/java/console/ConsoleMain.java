@@ -1,4 +1,4 @@
-package com.revature.project0.Console;
+package console;
 
 public class ConsoleMain {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.revature.project0;
+package list;
 
 /**
  * Custom list interface we will use to implement our own list data structure

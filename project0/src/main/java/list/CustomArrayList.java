@@ -1,4 +1,4 @@
-package com.revature.project0;
+package list;
 
 /**
  * A fairly simple arraylist implementation extending custom list interface.

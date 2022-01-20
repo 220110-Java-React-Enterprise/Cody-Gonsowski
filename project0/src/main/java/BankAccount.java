@@ -1,5 +1,3 @@
-package com.revature.project0;
-
 /**
  * Simple Account class to handle user data and transactions.
  */

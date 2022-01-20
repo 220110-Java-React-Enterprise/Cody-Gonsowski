@@ -1,9 +1,8 @@
-package com.revature.project0;
-
 import java.util.Scanner;
 
 /**
  * Driving class of the console bank program.
+ * TODO: use console renderer and break up that way instead
  */
 public class Main {
     public static void main(String[] args) {
