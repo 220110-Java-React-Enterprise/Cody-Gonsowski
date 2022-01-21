@@ -13,15 +13,9 @@ public class UserAccount {
 
 
     /**
-     * Default constructor.
-     *   Creates an account of balance 0 and name name.
+     * Empty constructor.
      */
-    public UserAccount() {
-        this.firstName = "firstname";
-        this.lastName = "lastname";
-        this.email = "name@name.name";
-        this.password = "password";
-    }
+    public UserAccount() { }
 
 
     /**
