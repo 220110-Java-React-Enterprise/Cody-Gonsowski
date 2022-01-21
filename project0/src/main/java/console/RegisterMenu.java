@@ -1,18 +1,20 @@
 package console;
 
 import account.UserAccount;
+import account.repos.UserAccountRepo;
 
 public class RegisterMenu extends View {
-    public RegisterMenu(UserAccount user) {
+    public RegisterMenu(UserAccountRepo userRepo) {
         viewName = "RegisterMenu";
         viewManager = ViewManager.getViewManager();
-        this.user = user;
+        this.userRepo = userRepo;
     }
 
     @Override
     public void renderView() {
         String input = "";
         boolean isValid = false;
+        UserAccount user = new UserAccount();
 
         System.out.println("============ NEW ACCOUNT ============");
 
@@ -78,7 +80,8 @@ public class RegisterMenu extends View {
 
         System.out.println("=====================================");
 
-        //TODO add user to db
+        userRepo.create(user);
+
         System.out.println("Registration complete!");
 
         viewManager.navigate("MainMenu");

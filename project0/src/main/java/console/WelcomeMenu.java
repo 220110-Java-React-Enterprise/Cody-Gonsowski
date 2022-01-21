@@ -1,18 +1,15 @@
 package console;
 
-import account.UserAccount;
-
-public class MainMenu extends View {
-    public MainMenu(UserAccount user) {
-        viewName = "MainMenu";
+public class WelcomeMenu extends View {
+    public WelcomeMenu() {
+        viewName = "WelcomeMenu";
         viewManager = ViewManager.getViewManager();
-        this.user = user;
     }
 
     @Override
     public void renderView() {
         // prompt user
-        System.out.println("============ MAIN MENU ============\n" +
+        System.out.println("============= WELCOME =============\n" +
                            "l - Login to an existing account\n" +
                            "r - Register a new account\n" +
                            "q - Quit\n" +
