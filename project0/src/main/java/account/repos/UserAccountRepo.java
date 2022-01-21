@@ -9,11 +9,11 @@ import account.UserAccount;
 import database.ConnectionManager;
 import database.DataSourceCRUD;
 
-public class UserAccontRepo implements DataSourceCRUD<UserAccount> {
+public class UserAccountRepo implements DataSourceCRUD<UserAccount> {
 
     private Connection connection;
 
-    public UserAccontRepo() {
+    public UserAccountRepo() {
         connection = ConnectionManager.getConnection();
     }
 
