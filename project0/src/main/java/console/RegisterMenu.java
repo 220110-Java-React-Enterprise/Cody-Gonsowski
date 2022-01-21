@@ -84,6 +84,6 @@ public class RegisterMenu extends View {
 
         System.out.println("Registration complete!");
 
-        viewManager.navigate("MainMenu");
+        viewManager.navigate("WelcomeMenu");
     }
 }

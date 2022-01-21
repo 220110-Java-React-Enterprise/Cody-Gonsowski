@@ -24,7 +24,7 @@ public class Main {
         viewManager.registerView(new LoginMenu(currentUser));
 
         // navigate to main menu for the first menu
-        viewManager.navigate("MainMenu");
+        viewManager.navigate("WelcomeMenu");
 
         // call the next render method
         while(viewManager.isRunning()) {
