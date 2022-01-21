@@ -6,6 +6,7 @@ import helper.Checker;
  * Simple Account class to handle user data and transactions.
  */
 public class UserAccount {
+    private Integer id;
     private String firstName;
     private String lastName;
     private String email;
@@ -26,11 +27,30 @@ public class UserAccount {
      * @param email email to set for account
      * @param password password to set for account
      */
-    public UserAccount(String firstName, String lastName, String email, String password) {
+    public UserAccount(Integer id, String firstName, String lastName, String email, String password) {
+        setId(id);
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
         setPassword(password);
+    }
+
+    
+    /**
+     * Gets id of user.
+     * @return id of user
+     */
+    public Integer getId() {
+        return this.id;
+    }
+
+
+    /**
+     * Sets id of account.
+     */
+    public boolean setId(Integer id) {
+        this.id = id;
+        return true;
     }
 
 
