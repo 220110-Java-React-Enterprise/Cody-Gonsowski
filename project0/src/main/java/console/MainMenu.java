@@ -1,17 +1,22 @@
 package console;
 
-public class MainMenu extends View {
+import account.UserAccount;
 
-    public MainMenu() {
+public class MainMenu extends View {
+    public MainMenu(UserAccount user) {
         viewName = "MainMenu";
         viewManager = ViewManager.getViewManager();
+        this.user = user;
     }
 
     @Override
     public void renderView() {
         // prompt user
-        System.out.println("========== Main Menu ==========");
-        System.out.println("Enter name: ");
+        System.out.println("============ MAIN MENU ============\n" +
+                           "l - Login to an existing account\n" +
+                           "r - Register a new account\n" + 
+                           "===================================");
+        System.out.print("Enter choice: ");
 
         // get input from user
         String input = viewManager.getScanner().nextLine();
@@ -19,10 +24,10 @@ public class MainMenu extends View {
         // perform validation for input?
 
         // store this for use later across different contexts
-        DataStore.setName(input);
+        user.setEmail("test@test.com");
 
         // navigate to next menu
-        viewManager.navigate("SubMenu");
+        viewManager.navigate("LoginMenu");
 
     }
 }
