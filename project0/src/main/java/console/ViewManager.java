@@ -1,7 +1,6 @@
 package console;
 
-import java.util.LinkedList;
-import java.util.List;
+import list.CustomArrayList;
 import java.util.Scanner;
 
 /**
@@ -16,16 +15,14 @@ public class ViewManager {
     private final Scanner scanner;
     private View nextView;
 
-    // TODO when adapting to P0, replace this with your custom list structure
-    private List<View> viewList;
+    private CustomArrayList<View> viewList;
 
 
     // default constructor to set up starting values & references
     private ViewManager() {
         running = true;
         scanner = new Scanner(System.in);
-        // TODO when adapting to P0, replace this with your custom list structure
-        viewList = new LinkedList<>();
+        viewList = new CustomArrayList<>();
     }
 
 
@@ -41,7 +38,8 @@ public class ViewManager {
 
     // handoff destination -> runs through registered views -> queues up next view
     public void navigate(String destination) {
-        for(View view : viewList) {
+        for (int i = 0; i < viewList.size(); i++) {
+            View view = viewList.get(i);
             if(view.viewName.equals(destination)) {
                 nextView = view;
             }
