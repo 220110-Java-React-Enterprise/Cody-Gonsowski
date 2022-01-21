@@ -14,20 +14,33 @@ public class MainMenu extends View {
         // prompt user
         System.out.println("============ MAIN MENU ============\n" +
                            "l - Login to an existing account\n" +
-                           "r - Register a new account\n" + 
+                           "r - Register a new account\n" +
+                           "q - Quit\n" +
                            "===================================");
         System.out.print("Enter choice: ");
 
         // get input from user
         String input = viewManager.getScanner().nextLine();
 
-        // perform validation for input?
-
-        // store this for use later across different contexts
-        user.setEmail("test@test.com");
-
-        // navigate to next menu
-        viewManager.navigate("LoginMenu");
-
+        // navigate to a menu based on user choice
+        boolean isChoice = false;
+        do {
+            switch(input.toCharArray()[0]) {
+                case 'l':
+                    viewManager.navigate("LoginMenu");
+                    isChoice = true;
+                    break;
+                case 'r':
+                    viewManager.navigate("RegisterMenu");
+                    isChoice = true;
+                    break;
+                case 'q':
+                    viewManager.quit();
+                    isChoice = true;
+                    break;
+                default:
+                    System.out.println("Invalid option, please try again.");
+            }
+        } while (!isChoice);
     }
 }

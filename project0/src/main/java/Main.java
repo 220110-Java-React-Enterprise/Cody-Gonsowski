@@ -1,5 +1,6 @@
 import account.UserAccount;
 import console.MainMenu;
+import console.RegisterMenu;
 import console.LoginMenu;
 import console.ViewManager;
 
@@ -13,6 +14,7 @@ public class Main {
 
         // register views to view manager
         viewManager.registerView(new MainMenu(user));
+        viewManager.registerView(new RegisterMenu(user));
         viewManager.registerView(new LoginMenu(user));
 
         // navigate to main menu for the first menu
