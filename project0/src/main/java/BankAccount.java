@@ -17,7 +17,6 @@ public class BankAccount {
     /**
      * Parameterized constructor.
      *   Creates an account when given a username and an initial balance.
-     * @param username username to set for account
      * @param balance initial balance of account
      */
     public BankAccount(double balance) {

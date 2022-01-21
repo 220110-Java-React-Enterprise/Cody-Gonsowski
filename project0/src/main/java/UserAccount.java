@@ -1,5 +1,3 @@
-import list.CustomArrayList;
-
 /**
  * Simple Account class to handle user data and transactions.
  */
@@ -8,7 +6,6 @@ public class UserAccount {
     private String lastName;
     private String email;
     private String password;
-    private CustomArrayList<BankAccount> bankAccounts;
 
 
     /**
@@ -20,21 +17,22 @@ public class UserAccount {
         this.lastName = "lastname";
         this.email = "name@name.name";
         this.password = "password";
-        this.bankAccounts = new CustomArrayList<>();
     }
 
 
     /**
      * Parameterized constructor.
      *   Creates an account when given a name and an initial balance.
-     * @param firstName first name to set for user
-     * @param lastName last name to set for user
+     * @param firstName first name to set for account
+     * @param lastName last name to set for account
      * @param email email to set for account
+     * @param password password to set for account
      */
-    public UserAccount(String firstName, String lastName, String email) {
+    public UserAccount(String firstName, String lastName, String email, String password) {
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
+        setPassword(password);
     }
 
 
@@ -128,17 +126,5 @@ public class UserAccount {
      */
     public String getPassword() {
         return this.password;
-    }
-
-
-    /**
-     * Prints a list of all associated bank accounts alongside their balances.
-     */
-    public void printBankAccounts() {
-        for (int i = 0; i < bankAccounts.size(); i++) {
-            //TODO finish implementing
-            BankAccount tempBankAcc = bankAccounts.get(i);
-            System.out.println(tempBankAcc.getBalance());
-        }
     }
 }
