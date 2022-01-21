@@ -79,7 +79,6 @@ public class CustomArrayList<E> implements CustomListInterface<E> {
      * @throws IndexOutOfBoundsException
      */
     @Override
-    @SuppressWarnings("unchecked")
     public void add(E e, int index) throws IndexOutOfBoundsException {
         // index out of bounds
         if (index >= this.size) {
@@ -95,12 +94,8 @@ public class CustomArrayList<E> implements CustomListInterface<E> {
         this.size++;
 
         // shift elements
-        E tempElement;
-        for (int i = index; i < this.size - 1; i++) {
-            //! typecast is suppressed
-            tempElement = (E)array[i];
-            array[i] = array[i + 1];
-            array[i + 1] = tempElement;
+        for (int i = this.size; i > index; i--) {
+            array[i] = array[i - 1];
         }
 
         // update object at index to e
@@ -162,15 +157,22 @@ public class CustomArrayList<E> implements CustomListInterface<E> {
      * Removes object at specified index from underlying array, we will then
      * need to shift the remaining elements up in the index order to fill in the gap
      * @param index index of object to remove from array
+     * @throws IndexOutOfBoundsException
      */
     @Override
-    public void remove(int index) {
-        //TODO fix this - needs to resize + remove null
-        // set array at index to null
-        array[index] = null;
+    public void remove(int index) throws IndexOutOfBoundsException {
+        // index out of bounds
+        if (index >= this.size) {
+            throw new IndexOutOfBoundsException("ERROR: Index is out of bounds!");
+        }
 
-        // decrement size
+        // update size
         this.size--;
+
+        // shift elements
+        for (int i = index; i < this.size; i++) {
+            array[i] = array[i + 1];
+        }
     }
 
 
