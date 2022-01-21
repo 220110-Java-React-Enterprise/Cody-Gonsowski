@@ -5,7 +5,7 @@ import helper.InvalidAmountException;
  * Simple Account class to handle user data and transactions.
  */
 public class BankAccount {
-    private double balance;
+    private Double balance;
 
 
     /**
@@ -13,7 +13,7 @@ public class BankAccount {
      *   Creates an account of balance 0 and name name.
      */
     public BankAccount() {
-        this.balance = 0;
+        this.balance = 0.0;
     }
 
 
@@ -22,7 +22,7 @@ public class BankAccount {
      *   Creates an account when given a username and an initial balance.
      * @param balance initial balance of account
      */
-    public BankAccount(double balance) {
+    public BankAccount(Double balance) {
         setBalance(balance);
     }
 
@@ -31,7 +31,7 @@ public class BankAccount {
      * Gets current account balance.
      * @return current account balance
      */
-    public double getBalance() {
+    public Double getBalance() {
         return this.balance;
     }
 
@@ -40,7 +40,7 @@ public class BankAccount {
      * Sets current account balance.
      * @return current account balance
      */
-    public void setBalance(double balance) {
+    public void setBalance(Double balance) {
         this.balance = balance;
     }
 
@@ -50,7 +50,7 @@ public class BankAccount {
      * @param amount amount to deposit to account
      * @throws InvalidAmountException
      */
-    public void deposit(double amount) throws InvalidAmountException {
+    public void deposit(Double amount) throws InvalidAmountException {
         // invalid deposit amount
         if (amount <= 0) {
             throw new InvalidAmountException("Negative deposit amount!");
@@ -67,7 +67,7 @@ public class BankAccount {
      * @param amount amount to withdrawal from account
      * @throws InvalidAmountException
      */
-    public void withdrawal(double amount) throws InvalidAmountException {
+    public void withdrawal(Double amount) throws InvalidAmountException {
         // invalid withdrawal amount
         if (amount <= 0) {
             throw new InvalidAmountException("Negative withdrawal amount!");
