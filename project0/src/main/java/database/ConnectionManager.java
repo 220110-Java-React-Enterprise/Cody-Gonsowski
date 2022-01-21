@@ -1,0 +1,61 @@
+package database;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
+
+public class ConnectionManager {
+    
+    //private static ConnectionManager connectionManager;
+    private static Connection connection;
+
+    // empty private constructor
+    private ConnectionManager() {
+
+    }
+
+    // singleton of connection object
+    public static Connection getConnection() {
+        if(connection == null) {
+            connection = connect();
+        }
+
+        return connection;
+    }
+
+    private static Connection connect() {
+        // connection logic here
+        /**
+         * jdbc:mariadb://<hostname>:<port>/<dbName>?user=<username>&password=<password>
+         *   replace <>
+        */
+
+        try {
+            // make a Properties object
+            Properties props = new Properties();
+
+            // open FileReader & read in properties
+            FileReader fr = new FileReader("src/main/resources/jdbc.properties");
+            props.load(fr);
+
+            // create the connectionString
+            String connectionString = "jdbc:mariadb://" +
+                props.getProperty("hostname") + ":" +
+                props.getProperty("port") + "/" +
+                props.getProperty("dbname") + "?user=" +
+                props.getProperty("username") + "&password=" +
+                props.getProperty("password");
+            
+            // make connection given connectionString
+            connection = DriverManager.getConnection(connectionString);
+
+        } catch (IOException | SQLException  e) {
+            e.printStackTrace();
+        }
+
+        return connection;
+    }
+}
