@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import account.UserAccount;
+
 /**
  * Driving class of the console bank program.
  * TODO: use console renderer and break up that way instead
