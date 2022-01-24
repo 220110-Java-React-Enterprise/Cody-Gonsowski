@@ -1,4 +1,4 @@
-package helper;
+package utils;
 
 public class InvalidAmountException extends Exception {
     public InvalidAmountException (String msg) {
