@@ -25,7 +25,7 @@ public class Main {
         viewManager.registerView(new UserRegisterMenu(userRepo));
         viewManager.registerView(new UserLoginMenu(currentUser));
         viewManager.registerView(new BankMenu());
-        viewManager.registerView(new BankCreateMenu(bankRepo));
+        viewManager.registerView(new BankCreateMenu(bankRepo, currentUser));
 
         // navigate to main menu for the first menu
         viewManager.navigate("WelcomeMenu");
