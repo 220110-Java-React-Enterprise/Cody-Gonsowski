@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import account.BankAccount;
 import database.ConnectionManager;
 import database.DataSourceCRUD;
+import list.CustomArrayList;
 
 public class BankAccountRepo implements DataSourceCRUD<BankAccount> {
 
@@ -63,6 +64,43 @@ public class BankAccountRepo implements DataSourceCRUD<BankAccount> {
         }
 
         return model;
+    }
+
+
+    public CustomArrayList<BankAccount> accountsOfCustomer(Integer id) {
+        // model to fill out
+        BankAccount model;
+        CustomArrayList<BankAccount> list = new CustomArrayList<>();
+
+        try {
+            // make query
+            String sql = "SELECT * FROM accounts WHERE customer_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            // get results
+            ResultSet rs = ps.executeQuery();
+
+            // fetch stuff from result set
+            //   if multiple, marshal List<Model> instead of just Model
+            while (rs.next()) {
+                // reset values
+                model = new BankAccount();
+
+                // update values
+                model.setAccountId(rs.getInt("account_id"));
+                model.setCustomerId(rs.getInt("customer_id"));
+                model.setBalance(rs.getDouble("balance"));
+
+                // marshall into list
+                list.add(model);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return list;
     }
 
 
