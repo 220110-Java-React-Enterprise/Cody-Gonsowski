@@ -67,6 +67,45 @@ public class BankAccountRepo implements DataSourceCRUD<BankAccount> {
     }
 
 
+    @Override
+    public BankAccount update(BankAccount model) {
+        try {
+            String sql = "UPDATE accounts SET customer_id = ?, balance = ? WHERE account_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, model.getCustomerId());
+            ps.setDouble(2, model.getBalance());
+            ps.setInt(3, model.getAccountId());
+
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return model;
+    }
+
+
+    @Override
+    public void delete(Integer id) {
+        try {
+            String sql = "DELETE FROM accounts WHERE account_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * Retrieves all accounts associated with the provided customer id
+     * @param id customer id of associated account to look for
+     * @return List of associated accounts.
+     */
     public CustomArrayList<BankAccount> accountsOfCustomer(Integer id) {
         // model to fill out
         BankAccount model;
@@ -102,39 +141,4 @@ public class BankAccountRepo implements DataSourceCRUD<BankAccount> {
 
         return list;
     }
-
-
-    @Override
-    public BankAccount update(BankAccount model) {
-        try {
-            String sql = "UPDATE accounts SET customer_id = ?, balance = ? WHERE account_id = ?";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, model.getCustomerId());
-            ps.setDouble(2, model.getBalance());
-            ps.setInt(3, model.getAccountId());
-
-            ps.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return model;
-    }
-
-
-    @Override
-    public void delete(Integer id) {
-        try {
-            String sql = "DELETE FROM accounts WHERE account_id = ?";
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, id);
-
-            ps.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-    
 }
