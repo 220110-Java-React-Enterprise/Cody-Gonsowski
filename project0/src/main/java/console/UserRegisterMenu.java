@@ -21,7 +21,7 @@ public class UserRegisterMenu extends View {
         // FIRST NAME
         do {
             // user input
-            System.out.printf("First Name: ");
+            System.out.print("First Name: ");
             input = viewManager.getScanner().nextLine();
 
             // attempt to set first name
@@ -36,7 +36,7 @@ public class UserRegisterMenu extends View {
         // LAST NAME
         do {
             // user input
-            System.out.printf("Last Name: ");
+            System.out.print("Last Name: ");
             input = viewManager.getScanner().nextLine();
 
             // attempt to set last name
@@ -51,7 +51,7 @@ public class UserRegisterMenu extends View {
         // EMAIL
         do {
             // user input
-            System.out.printf("Email: ");
+            System.out.print("Email: ");
             input = viewManager.getScanner().nextLine();
 
             // attempt to set email
@@ -66,7 +66,7 @@ public class UserRegisterMenu extends View {
         // PASSWORD
         do {
             // user input
-            System.out.printf("Password: ");
+            System.out.print("Password: ");
             input = viewManager.getScanner().nextLine();
 
             // attempt to set password
