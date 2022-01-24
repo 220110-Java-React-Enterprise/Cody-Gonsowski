@@ -1,22 +1,22 @@
 package console;
 
-import account.UserAccount;
-import account.repos.UserAccountRepo;
+import account.BankAccount;
+import account.repos.BankAccountRepo;
 
-public class RegisterMenu extends View {
-    public RegisterMenu(UserAccountRepo userRepo) {
-        viewName = "RegisterMenu";
+public class BankCreateMenu extends View {
+    public BankCreateMenu(BankAccountRepo bankRepo) {
+        viewName = "BankCreateMenu";
         viewManager = ViewManager.getViewManager();
-        this.userRepo = userRepo;
+        this.bankRepo = bankRepo;
     }
 
     @Override
     public void renderView() {
         String input = "";
         boolean isValid = false;
-        UserAccount user = new UserAccount();
+        BankAccount user = new BankAccount();
 
-        System.out.println("============ NEW ACCOUNT ============");
+        System.out.println("=========== NEW ACCOUNT ===========");
 
         // FIRST NAME
         do {
@@ -78,7 +78,7 @@ public class RegisterMenu extends View {
             }
         } while (!isValid);
 
-        System.out.println("=====================================");
+        System.out.println("===================================");
 
         userRepo.create(user);
 

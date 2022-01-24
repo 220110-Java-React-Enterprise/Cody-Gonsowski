@@ -1,17 +1,16 @@
 package console;
 
-public class WelcomeMenu extends View {
-    public WelcomeMenu() {
-        viewName = "WelcomeMenu";
+public class BankMenu extends View {
+    public BankMenu() {
+        viewName = "BankMenu";
         viewManager = ViewManager.getViewManager();
     }
 
     @Override
     public void renderView() {
-        // prompt user
-        System.out.println("============= WELCOME =============\n" +
-                           "l - Login to an existing account\n" +
-                           "r - Register a new account\n" +
+        System.out.println("============= BANKING =============\n" +
+                           "c - Create a new banking account\n" +
+                           "l - List associated accounts\n" +
                            "q - Quit\n" +
                            "===================================");
         System.out.print("Enter choice: ");
@@ -22,24 +21,22 @@ public class WelcomeMenu extends View {
         // navigate to a menu based on user choice
         boolean isChoice = false;
         do {
-            switch(input.toCharArray()[0]) {
+            switch (input.toCharArray()[0]) {
+                case 'c':
+                    viewManager.navigate("BankCreateMenu");
+                    break;
+                
                 case 'l':
-                    viewManager.navigate("UserLoginMenu");
-                    isChoice = true;
+                    viewManager.navigate("BankListMenu");
                     break;
-
-                case 'r':
-                    viewManager.navigate("UserRegisterMenu");
-                    isChoice = true;
-                    break;
-
+                
                 case 'q':
                     viewManager.quit();
                     isChoice = true;
                     break;
-
+                
                 default:
-                    System.out.println("Invalid option, please try again.");
+                    break;
             }
         } while (!isChoice);
     }

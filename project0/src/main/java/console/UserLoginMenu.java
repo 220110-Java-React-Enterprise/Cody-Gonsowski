@@ -2,9 +2,9 @@ package console;
 
 import account.UserAccount;
 
-public class LoginMenu extends View {
-    public LoginMenu(UserAccount currentUser) {
-        viewName = "LoginMenu";
+public class UserLoginMenu extends View {
+    public UserLoginMenu(UserAccount currentUser) {
+        viewName = "UserLoginMenu";
         viewManager = ViewManager.getViewManager();
         this.currentUser = currentUser;
     }
@@ -13,6 +13,7 @@ public class LoginMenu extends View {
     public void renderView() {
         System.out.println("============== LOGIN ==============");
         System.out.printf("Email: %s", currentUser.getEmail());
+        //TODO finish login
         System.out.println("===================================");
 
         viewManager.quit();

@@ -3,8 +3,10 @@ import account.UserAccount;
 import account.repos.BankAccountRepo;
 import account.repos.UserAccountRepo;
 import console.WelcomeMenu;
-import console.RegisterMenu;
-import console.LoginMenu;
+import console.UserRegisterMenu;
+import console.BankCreateMenu;
+import console.BankMenu;
+import console.UserLoginMenu;
 import console.ViewManager;
 
 public class Main {
@@ -20,8 +22,10 @@ public class Main {
 
         // register views to view manager
         viewManager.registerView(new WelcomeMenu());
-        viewManager.registerView(new RegisterMenu(userRepo));
-        viewManager.registerView(new LoginMenu(currentUser));
+        viewManager.registerView(new UserRegisterMenu(userRepo));
+        viewManager.registerView(new UserLoginMenu(currentUser));
+        viewManager.registerView(new BankMenu());
+        viewManager.registerView(new BankCreateMenu(bankRepo));
 
         // navigate to main menu for the first menu
         viewManager.navigate("WelcomeMenu");
