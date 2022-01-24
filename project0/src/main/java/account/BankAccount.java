@@ -1,6 +1,6 @@
 package account;
 
-import helper.InvalidAmountException;
+import utils.InvalidAmountException;
 /**
  * Simple Account class to handle user data and transactions.
  */

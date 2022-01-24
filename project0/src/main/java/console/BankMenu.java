@@ -24,10 +24,12 @@ public class BankMenu extends View {
             switch (input.toCharArray()[0]) {
                 case 'c':
                     viewManager.navigate("BankCreateMenu");
+                    isChoice = true;
                     break;
                 
                 case 'l':
                     viewManager.navigate("BankListMenu");
+                    isChoice = true;
                     break;
                 
                 case 'q':

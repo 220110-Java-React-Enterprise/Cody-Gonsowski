@@ -1,13 +1,12 @@
 package console;
 
 import account.UserAccount;
-import account.repos.UserAccountRepo;
+import utils.DataStore;
 
 public class UserRegisterMenu extends View {
-    public UserRegisterMenu(UserAccountRepo userRepo) {
+    public UserRegisterMenu() {
         viewName = "UserRegisterMenu";
         viewManager = ViewManager.getViewManager();
-        this.userRepo = userRepo;
     }
 
     @Override
@@ -80,7 +79,7 @@ public class UserRegisterMenu extends View {
 
         System.out.println("===================================");
 
-        userRepo.create(user);
+        DataStore.getUserRepo().create(user);
 
         System.out.println("Registration complete!");
 

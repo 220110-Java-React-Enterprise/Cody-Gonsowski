@@ -1,6 +1,6 @@
 package account;
 
-import helper.Checker;
+import utils.Checker;
 
 /**
  * Simple Account class to handle user data and transactions.

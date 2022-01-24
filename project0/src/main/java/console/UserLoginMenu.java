@@ -1,18 +1,17 @@
 package console;
 
-import account.UserAccount;
+import utils.DataStore;
 
 public class UserLoginMenu extends View {
-    public UserLoginMenu(UserAccount currentUser) {
+    public UserLoginMenu() {
         viewName = "UserLoginMenu";
         viewManager = ViewManager.getViewManager();
-        this.currentUser = currentUser;
     }
 
     @Override
     public void renderView() {
         System.out.println("============== LOGIN ==============");
-        System.out.printf("Email: %s", currentUser.getEmail());
+        System.out.printf("Email: %s", DataStore.getUser().getEmail());
         //TODO finish login
         System.out.println("===================================");
 
