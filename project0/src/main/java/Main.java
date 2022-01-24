@@ -4,6 +4,8 @@ import console.UserRegisterMenu;
 import console.BankCreateMenu;
 import console.BankListMenu;
 import console.BankMenu;
+import console.BankSelectMenu;
+import console.BankTransactionMenu;
 import console.UserLoginMenu;
 import console.ViewManager;
 
@@ -22,6 +24,8 @@ public class Main {
         viewManager.registerView(new BankMenu());
         viewManager.registerView(new BankCreateMenu());
         viewManager.registerView(new BankListMenu());
+        viewManager.registerView(new BankSelectMenu());
+        viewManager.registerView(new BankTransactionMenu());
 
         // navigate to main menu for the first menu
         viewManager.navigate("WelcomeMenu");

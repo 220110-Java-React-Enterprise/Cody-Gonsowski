@@ -1,17 +1,17 @@
 package console;
 
-public class BankMenu extends View {
-    public BankMenu() {
-        viewName = "BankMenu";
+public class BankTransactionMenu extends View {
+    public BankTransactionMenu() {
+        viewName = "BankTransactionMenu";
         viewManager = ViewManager.getViewManager();
     }
 
     @Override
     public void renderView() {
-        System.out.println("\n============= BANKING =============\n" +
-                           "c - Create a new banking account\n" +
-                           "l - List associated accounts\n" +
-                           "s - Select an associated account\n" +
+        //TODO print current balance of active account to user
+        System.out.println("\n=========== TRANSACTION ===========\n" +
+                           "d - Make a deposit\n" +
+                           "w - Make a withdrawal\n" +
                            "q - Quit\n" +
                            "===================================");
         System.out.print("Enter choice: ");
@@ -23,18 +23,15 @@ public class BankMenu extends View {
         boolean isChoice = false;
         do {
             switch (input.toCharArray()[0]) {
-                case 'c':
-                    viewManager.navigate("BankCreateMenu");
+                case 'd':
+                    viewManager.navigate("BankDepositMenu");
+                    //TODO implement BankDepositMenu
                     isChoice = true;
                     break;
                 
-                case 'l':
-                    viewManager.navigate("BankListMenu");
-                    isChoice = true;
-                    break;
-                
-                case 's':
-                    viewManager.navigate("BankSelectMenu");
+                case 'w':
+                    viewManager.navigate("BankWithdrawalMenu");
+                    //TODO implement BankWithdrawalMenu
                     isChoice = true;
                     break;
                 
