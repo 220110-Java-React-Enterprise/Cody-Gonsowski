@@ -29,11 +29,8 @@ public class BankListMenu extends View {
         for (int i = 0; i < list.size(); i++) {
             currentAccount = list.get(i);
 
-            // print id of account
-            System.out.printf("Account: %d\n", currentAccount.getId());
-
-            // format balance like: $1234.56
-            System.out.printf("  Balance: %s\n", currencyFormatter.format(currentAccount.getBalance()));
+            // print account & formatted balance
+            System.out.printf("Account %d contains %s\n", currentAccount.getId(), currencyFormatter.format(currentAccount.getBalance()));
         }
 
         System.out.println("===================================");
