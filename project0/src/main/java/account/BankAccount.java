@@ -5,8 +5,7 @@ import utils.InvalidAmountException;
  * Simple Account class to handle user data and transactions.
  */
 public class BankAccount {
-    private Integer account_id;
-    private Integer customer_id;
+    private Integer id;
     private Double balance;
 
 
@@ -21,9 +20,8 @@ public class BankAccount {
      *   Creates an account when given a username and an initial balance.
      * @param balance initial balance of account
      */
-    public BankAccount(Integer account_id, Integer customer_id, Double balance) {
-        setAccountId(account_id);
-        setCustomerId(customer_id);
+    public BankAccount(Integer id, Double balance) {
+        setId(id);
         setBalance(balance);
     }
 
@@ -32,33 +30,16 @@ public class BankAccount {
      * Gets associated customer id.
      * @return associated customer id
      */
-    public Integer getAccountId() {
-        return this.account_id;
+    public Integer getId() {
+        return this.id;
     }
 
 
     /**
      * Sets associated customer id.
      */
-    public void setAccountId(Integer account_id) {
-        this.account_id = account_id;
-    }
-
-
-    /**
-     * Gets associated customer id.
-     * @return associated customer id
-     */
-    public Integer getCustomerId() {
-        return this.customer_id;
-    }
-
-
-    /**
-     * Sets associated customer id.
-     */
-    public void setCustomerId(Integer customer_id) {
-        this.customer_id = customer_id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
 
