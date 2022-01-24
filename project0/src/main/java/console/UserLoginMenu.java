@@ -10,11 +10,38 @@ public class UserLoginMenu extends View {
 
     @Override
     public void renderView() {
+        String email, password = "";
+        
         System.out.println("============== LOGIN ==============");
-        System.out.printf("Email: %s", DataStore.getUser().getEmail());
-        //TODO finish login
-        System.out.println("===================================");
 
-        viewManager.quit();
+        // input email
+        System.out.print("Email: ");
+        email = viewManager.getScanner().nextLine();
+
+        // input password
+        System.out.print("Password: ");
+        password = viewManager.getScanner().nextLine();
+
+        // LOGIN SUCCESSFUL
+        if (DataStore.getUserRepo().doesPasswordMatch(email, password)) {
+            // update current user based on email
+            DataStore.setUser(DataStore.getUserRepo().retrieveUserInfo(email));
+
+            // print confirmation of login to user
+            System.out.printf("Login successful!\n Welcome, %s %s!\n",
+                DataStore.getUser().getFirstName(),
+                DataStore.getUser().getLastName());
+            System.out.println("===================================");
+
+            // redirect to banking menu
+            viewManager.navigate("BankMenu");
+        }
+        // LOGIN FAILED
+        else {
+            System.out.println("Login failed! Please register a new account or try again.");
+            System.out.println("===================================");
+    
+            viewManager.navigate("WelcomeMenu");
+        }
     }
 }

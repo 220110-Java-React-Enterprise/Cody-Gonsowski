@@ -55,6 +55,7 @@ public class UserAccountRepo implements DataSourceCRUD<UserAccount> {
             // fetch stuff from result set
             //   if multiple, marshal List<Model> instead of just Model
             while (rs.next()) {
+                model.setId(rs.getInt("customer_id"));
                 model.setFirstName(rs.getString("first_name"));
                 model.setLastName(rs.getString("last_name"));
                 model.setEmail(rs.getString("email"));
@@ -131,5 +132,72 @@ public class UserAccountRepo implements DataSourceCRUD<UserAccount> {
         }
 
         return false;
+    }
+
+
+    /**
+     * Compares a possible given password to the stored password of a given email.
+     * @param email email to look for
+     * @param password password to compare
+     * @return true - password matches
+     *         false - password does not match
+     */
+    public boolean doesPasswordMatch(String email, String password) {
+        try {
+            // make query
+            String sql = "SELECT * FROM customers WHERE email = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, email);
+
+            // get results
+            ResultSet rs = ps.executeQuery();
+
+            // return true if there is anything in result set
+            if (rs.next()) {
+                if (rs.getString("password").equals(password)) {
+                    return true;
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+
+    /**
+     * Retrieve a user's info given their email.
+     * @param email email associated with user account
+     * @return account details as a model
+     */
+    public UserAccount retrieveUserInfo(String email) {
+        // model to fill out
+        UserAccount model = new UserAccount();
+
+        try {
+            // make query
+            String sql = "SELECT * FROM customers WHERE email = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, email);
+
+            // get results
+            ResultSet rs = ps.executeQuery();
+
+            // fetch stuff from result set
+            while (rs.next()) {
+                model.setId(rs.getInt("customer_id"));
+                model.setFirstName(rs.getString("first_name"));
+                model.setLastName(rs.getString("last_name"));
+                model.setEmail(rs.getString("email"));
+                model.setPassword(rs.getString("password"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return model;
     }
 }

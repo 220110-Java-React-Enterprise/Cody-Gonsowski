@@ -60,6 +60,10 @@ public class UserRegisterMenu extends View {
             if (!isValid) {
                 System.out.println("Invalid email! Please try again.");
             }
+
+            if (DataStore.getUserRepo().doesEmailExist(input)) {
+                System.out.println("That email already exists! Please try again.");
+            }
         } while (!isValid);
 
         // PASSWORD

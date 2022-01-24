@@ -14,12 +14,20 @@ public class DataStore {
         return user;
     }
 
+    public static void setUser(UserAccount newUser) {
+        user = newUser;
+    }
+
     public static UserAccountRepo getUserRepo() {
         return userRepo;
     }
 
     public static BankAccount getBank() {
         return bank;
+    }
+
+    public static void setBank(BankAccount newBank) {
+        bank = newBank;
     }
 
     public static BankAccountRepo getBankRepo() {
