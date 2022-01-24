@@ -113,7 +113,7 @@ public class BankAccountRepo implements DataSourceCRUD<BankAccount> {
 
         try {
             // make query
-            String sql = "SELECT * FROM accounts WHERE customer_id = ?";
+            String sql = "SELECT * FROM accounts a JOIN accounts_customers ac ON a.account_id = ac.account_id JOIN customers c ON c.customer_id = ac.customer_id WHERE c.customer_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, id);
 
