@@ -16,16 +16,22 @@ public class BankCreateMenu extends View {
         // following general format, though process is automated
         System.out.println("=========== NEW ACCOUNT ===========");
 
-        // inform user account is being created
-        System.out.println("Creating new bank account for active user...");
-        bank.setCustomerId(DataStore.getUser().getId());
-
-        // initial account balance of $0
-        System.out.println("Initiating account balance of $0...");
+        // inform user account is being created empty
+        System.out.println("Creating new empty bank account...");
         bank.setBalance(0.0);
-
-        // create account in database
         DataStore.getBankRepo().create(bank);
+
+        // update current bank account
+        DataStore.setBank(
+            DataStore.getBankRepo().accountsOfCustomer(
+                DataStore.getUser().getId()
+                ).get(0));
+
+        // link account to active user
+        System.out.println("Linking new bank account to active user...");
+        DataStore.getBankRepo().linkAccount(DataStore.getUser().getId(), DataStore.getBank().getId());
+
+        // create account
         System.out.println("Account created successfully!");
 
         System.out.println("===================================");

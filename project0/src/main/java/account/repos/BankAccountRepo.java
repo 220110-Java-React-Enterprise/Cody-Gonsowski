@@ -22,10 +22,9 @@ public class BankAccountRepo implements DataSourceCRUD<BankAccount> {
     @Override
     public BankAccount create(BankAccount model) {
         try {
-            String sql = "INSERT INTO accounts (customer_id, balance) VALUES (?,?)";
+            String sql = "INSERT INTO accounts (balance) VALUES (?)";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, model.getCustomerId());
-            ps.setDouble(2, model.getBalance());
+            ps.setDouble(1, model.getBalance());
 
             ps.executeUpdate();
 
@@ -54,8 +53,7 @@ public class BankAccountRepo implements DataSourceCRUD<BankAccount> {
             // fetch stuff from result set
             //   if multiple, marshal List<Model> instead of just Model
             while (rs.next()) {
-                model.setAccountId(rs.getInt("account_id"));
-                model.setCustomerId(rs.getInt("customer_id"));
+                model.setId(rs.getInt("account_id"));
                 model.setBalance(rs.getDouble("balance"));
             }
 
@@ -70,11 +68,10 @@ public class BankAccountRepo implements DataSourceCRUD<BankAccount> {
     @Override
     public BankAccount update(BankAccount model) {
         try {
-            String sql = "UPDATE accounts SET customer_id = ?, balance = ? WHERE account_id = ?";
+            String sql = "UPDATE accounts SET balance = ? WHERE account_id = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, model.getCustomerId());
-            ps.setDouble(2, model.getBalance());
-            ps.setInt(3, model.getAccountId());
+            ps.setDouble(1, model.getBalance());
+            ps.setInt(2, model.getId());
 
             ps.executeUpdate();
 
@@ -127,8 +124,7 @@ public class BankAccountRepo implements DataSourceCRUD<BankAccount> {
                 model = new BankAccount();
 
                 // update values
-                model.setAccountId(rs.getInt("account_id"));
-                model.setCustomerId(rs.getInt("customer_id"));
+                model.setId(rs.getInt("account_id"));
                 model.setBalance(rs.getDouble("balance"));
 
                 // marshall into list
@@ -140,5 +136,22 @@ public class BankAccountRepo implements DataSourceCRUD<BankAccount> {
         }
 
         return list;
+    }
+
+    
+    public void linkAccount(Integer cid, Integer aid) {
+        try {
+            // make query
+            String sql = "UPDATE accounts_customers SET customer_id = ?, account_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, cid);
+            ps.setInt(2, aid);
+
+            // run the update
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

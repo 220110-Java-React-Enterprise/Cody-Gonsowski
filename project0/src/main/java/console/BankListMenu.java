@@ -30,7 +30,7 @@ public class BankListMenu extends View {
             currentAccount = list.get(i);
 
             // print id of account
-            System.out.printf("Account: %d\n", currentAccount.getAccountId());
+            System.out.printf("Account: %d\n", currentAccount.getId());
 
             // format balance like: $1234.56
             System.out.printf("  Balance: %s\n", currencyFormatter.format(currentAccount.getBalance()));
