@@ -22,13 +22,20 @@ public class UserAccountRepo implements DataSourceCRUD<UserAccount> {
     public UserAccount create(UserAccount model) {
         try {
             String sql = "INSERT INTO customers (first_name, last_name, email, password) VALUES (?,?,?,?)";
-            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1, model.getFirstName());
             ps.setString(2, model.getLastName());
             ps.setString(3, model.getEmail());
             ps.setString(4, model.getPassword());
 
             ps.executeUpdate();
+
+            // set model id to auto generated customer_id
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                model.setId(rs.getInt("customer_id"));
+            }
+
 
         } catch (SQLException e) {
             e.printStackTrace();

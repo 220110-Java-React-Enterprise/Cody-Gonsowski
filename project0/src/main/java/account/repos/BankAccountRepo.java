@@ -23,10 +23,16 @@ public class BankAccountRepo implements DataSourceCRUD<BankAccount> {
     public BankAccount create(BankAccount model) {
         try {
             String sql = "INSERT INTO accounts (balance) VALUES (?)";
-            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setDouble(1, model.getBalance());
 
             ps.executeUpdate();
+
+            // set model id to auto generated account_id
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                model.setId(rs.getInt("account_id"));
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -99,9 +105,9 @@ public class BankAccountRepo implements DataSourceCRUD<BankAccount> {
 
 
     /**
-     * Retrieves all accounts associated with the provided customer id
+     * Retrieves all accounts associated with the provided customer id.
      * @param id customer id of associated account to look for
-     * @return List of associated accounts.
+     * @return list of associated accounts
      */
     public CustomArrayList<BankAccount> accountsOfCustomer(Integer id) {
         // model to fill out
@@ -139,10 +145,15 @@ public class BankAccountRepo implements DataSourceCRUD<BankAccount> {
     }
 
     
+    /**
+     * Ties an existing customer account to an existing bank account through a junction table.
+     * @param cid customer id to link to account
+     * @param aid account id to link to customer
+     */
     public void linkAccount(Integer cid, Integer aid) {
         try {
             // make query
-            String sql = "UPDATE accounts_customers SET customer_id = ?, account_id = ?";
+            String sql = "INSERT INTO accounts_customers (customer_id, account_id) VALUES (?,?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, cid);
             ps.setInt(2, aid);
