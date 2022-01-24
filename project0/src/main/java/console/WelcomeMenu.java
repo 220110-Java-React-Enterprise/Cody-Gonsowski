@@ -9,7 +9,7 @@ public class WelcomeMenu extends View {
     @Override
     public void renderView() {
         // prompt user
-        System.out.println("============= WELCOME =============\n" +
+        System.out.println("\n============= WELCOME =============\n" +
                            "l - Login to an existing account\n" +
                            "r - Register a new account\n" +
                            "q - Quit\n" +

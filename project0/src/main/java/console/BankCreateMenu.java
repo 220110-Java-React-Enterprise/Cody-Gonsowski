@@ -14,7 +14,7 @@ public class BankCreateMenu extends View {
         BankAccount bank = new BankAccount();
 
         // following general format, though process is automated
-        System.out.println("=========== NEW ACCOUNT ===========");
+        System.out.println("\n=========== NEW ACCOUNT ===========");
 
         // inform user account is being created empty
         System.out.println("Creating new empty bank account...");

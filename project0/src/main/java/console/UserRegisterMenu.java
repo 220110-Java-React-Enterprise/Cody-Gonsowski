@@ -15,7 +15,7 @@ public class UserRegisterMenu extends View {
         boolean isValid = false;
         UserAccount user = new UserAccount();
 
-        System.out.println("=========== NEW ACCOUNT ===========");
+        System.out.println("\n=========== NEW ACCOUNT ===========");
 
         // FIRST NAME
         do {

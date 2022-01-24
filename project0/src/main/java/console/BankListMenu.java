@@ -16,7 +16,7 @@ public class BankListMenu extends View {
     @Override
     public void renderView() {
         // following general format, though process is automated
-        System.out.println("========== BANK ACCOUNTS ==========");
+        System.out.println("\n========== BANK ACCOUNTS ==========");
 
         // list to go through
         CustomArrayList<BankAccount> list = DataStore.getBankRepo().accountsOfCustomer(DataStore.getUser().getId());

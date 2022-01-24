@@ -8,7 +8,7 @@ public class BankMenu extends View {
 
     @Override
     public void renderView() {
-        System.out.println("============= BANKING =============\n" +
+        System.out.println("\n============= BANKING =============\n" +
                            "c - Create a new banking account\n" +
                            "l - List associated accounts\n" +
                            "q - Quit\n" +

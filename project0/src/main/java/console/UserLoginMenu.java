@@ -12,7 +12,7 @@ public class UserLoginMenu extends View {
     public void renderView() {
         String email, password = "";
         
-        System.out.println("============== LOGIN ==============");
+        System.out.println("\n============== LOGIN ==============");
 
         // input email
         System.out.print("Email: ");
@@ -28,7 +28,7 @@ public class UserLoginMenu extends View {
             DataStore.setUser(DataStore.getUserRepo().retrieveUserInfo(email));
 
             // print confirmation of login to user
-            System.out.printf("Login successful!\n Welcome, %s %s!\n",
+            System.out.printf("Login successful!\nWelcome, %s %s!\n",
                 DataStore.getUser().getFirstName(),
                 DataStore.getUser().getLastName());
             System.out.println("===================================");
