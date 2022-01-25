@@ -213,7 +213,7 @@ public class BankAccountRepo implements DataSourceCRUD<BankAccount> {
         }
 
         // not enough money in account
-        if (Double.compare(read(account_id).getBalance(), amount) <= 0) {
+        if ((read(account_id).getBalance() - amount) < 0) {
             throw new InvalidAmountException("Insufficient funds!");
         }
 
