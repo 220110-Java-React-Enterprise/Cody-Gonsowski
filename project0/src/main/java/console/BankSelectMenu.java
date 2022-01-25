@@ -44,6 +44,10 @@ public class BankSelectMenu extends View {
                         isLinked = true;
                     }
                 }
+
+                if (!isLinked) {
+                    System.out.println("That account does not exist or is not yours!");
+                }
             }
 
         } while (!isLinked);
