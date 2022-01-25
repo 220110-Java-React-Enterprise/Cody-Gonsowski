@@ -12,7 +12,8 @@ public class BankMenu extends View {
                            "c - Create a new banking account\n" +
                            "l - List associated accounts\n" +
                            "s - Select an associated account\n" +
-                           "q - Quit\n" +
+                           "q - Quit to previous major menu\n" +
+                           "e - Exit\n" +
                            "===================================");
         System.out.print("Enter choice: ");
 
@@ -39,7 +40,12 @@ public class BankMenu extends View {
                     break;
                 
                 case 'q':
-                    viewManager.quit();
+                    viewManager.navigate("WelcomeMenu");
+                    isChoice = true;
+                    break;
+                
+                case 'e':
+                    viewManager.exit();
                     isChoice = true;
                     break;
 

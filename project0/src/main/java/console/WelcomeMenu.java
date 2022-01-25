@@ -12,7 +12,7 @@ public class WelcomeMenu extends View {
         System.out.println("\n============= WELCOME =============\n" +
                            "l - Login to an existing account\n" +
                            "r - Register a new account\n" +
-                           "q - Quit\n" +
+                           "e - Exit\n" +
                            "===================================");
         System.out.print("Enter choice: ");
 
@@ -33,8 +33,8 @@ public class WelcomeMenu extends View {
                     isChoice = true;
                     break;
 
-                case 'q':
-                    viewManager.quit();
+                case 'e':
+                    viewManager.exit();
                     isChoice = true;
                     break;
 

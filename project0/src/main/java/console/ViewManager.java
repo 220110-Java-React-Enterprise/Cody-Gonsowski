@@ -62,7 +62,7 @@ public class ViewManager {
     }
 
 
-    public void quit() {
+    public void exit() {
         running = false;
     }
 

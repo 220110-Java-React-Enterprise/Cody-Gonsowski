@@ -18,7 +18,8 @@ public class BankTransactionMenu extends View {
                           "Account %d contains %s\n" +
                           "d - Make a deposit\n" +
                           "w - Make a withdrawal\n" +
-                          "q - Quit\n" +
+                          "q - Quit to previous major menu\n" +
+                          "e - Exit\n" +
                           "===================================\n",
                           DataStore.getBank().getId(),
                           currencyFormatter.format(DataStore.getBank().getBalance()));
@@ -42,7 +43,12 @@ public class BankTransactionMenu extends View {
                     break;
                 
                 case 'q':
-                    viewManager.quit();
+                    viewManager.navigate("BankMenu");
+                    isChoice = true;
+                    break;
+                
+                case 'e':
+                    viewManager.exit();
                     isChoice = true;
                     break;
 
