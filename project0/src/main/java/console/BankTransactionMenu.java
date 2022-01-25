@@ -45,9 +45,9 @@ public class BankTransactionMenu extends View {
                     viewManager.quit();
                     isChoice = true;
                     break;
-                
+
                 default:
-                    break;
+                    System.out.println("Invalid option, please try again.");
             }
         } while (!isChoice);
     }
