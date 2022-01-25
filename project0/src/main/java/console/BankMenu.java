@@ -10,8 +10,8 @@ public class BankMenu extends View {
     public void renderView() {
         System.out.println("\n============= BANKING =============\n" +
                            "c - Create a new banking account\n" +
-                           "l - List associated accounts\n" +
-                           "s - Select an associated account\n" +
+                           "l - List accounts\n" +
+                           "s - Select an account\n" +
                            "q - Quit to previous major menu\n" +
                            "e - Exit\n" +
                            "===================================");
