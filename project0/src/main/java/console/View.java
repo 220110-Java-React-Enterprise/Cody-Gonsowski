@@ -1,7 +1,7 @@
 package console;
 
 public abstract class View {
-    String viewName;
+    protected String viewName;
     protected ViewManager viewManager;
 
     public String getViewName() {
