@@ -2,10 +2,12 @@ import console.WelcomeMenu;
 import utils.DataStore;
 import console.UserRegisterMenu;
 import console.BankCreateMenu;
+import console.BankDepositMenu;
 import console.BankListMenu;
 import console.BankMenu;
 import console.BankSelectMenu;
 import console.BankTransactionMenu;
+import console.BankWithdrawalMenu;
 import console.UserLoginMenu;
 import console.ViewManager;
 
@@ -26,6 +28,8 @@ public class Main {
         viewManager.registerView(new BankListMenu());
         viewManager.registerView(new BankSelectMenu());
         viewManager.registerView(new BankTransactionMenu());
+        viewManager.registerView(new BankDepositMenu());
+        viewManager.registerView(new BankWithdrawalMenu());
 
         // navigate to main menu for the first menu
         viewManager.navigate("WelcomeMenu");
