@@ -9,6 +9,7 @@ import account.BankAccount;
 import database.ConnectionManager;
 import database.DataSourceCRUD;
 import list.CustomArrayList;
+import utils.InvalidAmountException;
 
 public class BankAccountRepo implements DataSourceCRUD<BankAccount> {
 
@@ -147,16 +148,82 @@ public class BankAccountRepo implements DataSourceCRUD<BankAccount> {
     
     /**
      * Ties an existing customer account to an existing bank account through a junction table.
-     * @param cid customer id to link to account
-     * @param aid account id to link to customer
+     * @param customer_id customer id to link to account
+     * @param account_id account id to link to customer
      */
-    public void linkAccount(Integer cid, Integer aid) {
+    public void linkAccount(Integer customer_id, Integer account_id) {
         try {
             // make query
             String sql = "INSERT INTO accounts_customers (customer_id, account_id) VALUES (?,?)";
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, cid);
-            ps.setInt(2, aid);
+            ps.setInt(1, customer_id);
+            ps.setInt(2, account_id);
+
+            // run the update
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * Perform a deposit provided the amount to deposit and the account to deposit to.
+     *   Checks if the amount is positive.
+     * @param amount amount to deposit; this should be positive
+     * @param account_id account to deposit to
+     * @throws InvalidAmountException
+     */
+    public void deposit(Double amount, Integer account_id) throws InvalidAmountException {
+        // invalid deposit amount
+        if (amount <= 0) {
+            throw new InvalidAmountException("Invalid deposit amount!");
+        }
+
+        // persist in database
+        try {
+            // make query
+            String sql = "UPDATE accounts SET balance = (balance + ?) WHERE account_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setDouble(1, amount);
+            ps.setInt(2, account_id);
+
+            // run the update
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * Perform a withdrawal provided the amount to withdraw and the account to withdraw from.
+     *   Checks if the amount is positive.
+     *   Checks if the balance is sufficient.
+     * @param amount amount to withdraw; this should be positive
+     * @param account_id account to withdraw from
+     * @throws InvalidAmountException
+     */
+    public void withdrawal(Double amount, Integer account_id) throws InvalidAmountException {
+        // invalid deposit amount
+        if (amount <= 0) {
+            throw new InvalidAmountException("Invalid withdrawal amount!");
+        }
+
+        // not enough money in account
+        if (Double.compare(read(account_id).getBalance(), amount) <= 0) {
+            throw new InvalidAmountException("Insufficient funds!");
+        }
+
+        // persist in database
+        try {
+            // make query
+            String sql = "UPDATE accounts SET balance = (balance - ?) WHERE account_id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setDouble(1, amount);
+            ps.setInt(2, account_id);
 
             // run the update
             ps.executeUpdate();

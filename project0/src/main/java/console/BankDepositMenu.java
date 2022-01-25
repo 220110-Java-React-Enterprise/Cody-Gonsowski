@@ -23,7 +23,7 @@ public class BankDepositMenu extends View {
             System.out.print("Enter an amount to deposit: ");
             input = viewManager.getScanner().nextLine();
 
-            // check to see if input is a valid amount
+            // check to see if input is a valid number
             try {
                 inputAmount = Double.parseDouble(input);
                 isDouble = true;
@@ -34,14 +34,15 @@ public class BankDepositMenu extends View {
 
             // perform transaction
             try {
-                // local
-                DataStore.getBank().deposit(inputAmount);
-    
-                // carry over local change to database
-                DataStore.getBankRepo().update(DataStore.getBank());
+                // persist change
+                DataStore.getBankRepo().deposit(inputAmount, DataStore.getBank().getId());
 
-                // indicate positive transaction amount
-                //   this is checked by deposit(), but should loop here
+                // update local account to match database
+                DataStore.setBank(
+                    DataStore.getBankRepo().read(
+                        DataStore.getBank().getId()));
+
+                // valid transaction has occurred
                 isValid = true;
     
             } catch (InvalidAmountException e) {
