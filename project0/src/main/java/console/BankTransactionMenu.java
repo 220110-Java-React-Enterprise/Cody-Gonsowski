@@ -1,5 +1,10 @@
 package console;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
+import utils.DataStore;
+
 public class BankTransactionMenu extends View {
     public BankTransactionMenu() {
         viewName = "BankTransactionMenu";
@@ -8,12 +13,15 @@ public class BankTransactionMenu extends View {
 
     @Override
     public void renderView() {
-        //TODO print current balance of active account to user
-        System.out.println("\n=========== TRANSACTION ===========\n" +
-                           "d - Make a deposit\n" +
-                           "w - Make a withdrawal\n" +
-                           "q - Quit\n" +
-                           "===================================");
+        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(new Locale("en", "US"));
+        System.out.printf("\n=========== TRANSACTION ===========\n" +
+                          "Account %d contains %s\n" +
+                          "d - Make a deposit\n" +
+                          "w - Make a withdrawal\n" +
+                          "q - Quit\n" +
+                          "===================================\n",
+                          DataStore.getBank().getId(),
+                          currencyFormatter.format(DataStore.getBank().getBalance()));
         System.out.print("Enter choice: ");
 
         // get input from user
@@ -25,13 +33,11 @@ public class BankTransactionMenu extends View {
             switch (input.toCharArray()[0]) {
                 case 'd':
                     viewManager.navigate("BankDepositMenu");
-                    //TODO implement BankDepositMenu
                     isChoice = true;
                     break;
                 
                 case 'w':
                     viewManager.navigate("BankWithdrawalMenu");
-                    //TODO implement BankWithdrawalMenu
                     isChoice = true;
                     break;
                 
