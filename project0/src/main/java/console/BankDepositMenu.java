@@ -1,7 +1,7 @@
 package console;
 
-import java.text.NumberFormat;
-import java.util.Locale;
+import utils.DataStore;
+import utils.InvalidAmountException;
 
 public class BankDepositMenu extends View {
     public BankDepositMenu() {
@@ -14,8 +14,7 @@ public class BankDepositMenu extends View {
         String input = "";
         Double inputAmount = 0.0;
         boolean isDouble = false;
-        boolean isValid = false;
-        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(new Locale("en", "US"));
+        boolean isPositive = false;
         
         System.out.println("\n============= DEPOSIT =============");
 
@@ -33,11 +32,31 @@ public class BankDepositMenu extends View {
                 isDouble = false;
             }
 
-            if (isDouble) {
-                isValid = true;
+        } while(!isDouble);
+
+        // perform transaction
+        do {
+            try {
+                // local
+                DataStore.getBank().deposit(inputAmount);
+    
+                // carry over local change to database
+                DataStore.getBankRepo().update(DataStore.getBank());
+
+                // indicate positive transaction amount
+                //   this is checked by deposit(), but should loop here
+                isPositive = true;
+    
+            } catch (InvalidAmountException e) {
+                System.out.println(e.getMessage());
+                isPositive = false;
             }
-        } while(!isValid);
+
+        } while (!isPositive);
 
         System.out.println("===================================");
+
+        // navigate back to transactions menu
+        viewManager.navigate("BankTransactionMenu");
     }
 }
