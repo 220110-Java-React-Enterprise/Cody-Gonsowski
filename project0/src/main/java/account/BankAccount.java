@@ -89,7 +89,7 @@ public class BankAccount {
         }
 
         // not enough money in account
-        if (this.balance < amount) {
+        if (this.balance <= amount) {
             throw new InvalidAmountException("Insufficient funds!");
         }
 

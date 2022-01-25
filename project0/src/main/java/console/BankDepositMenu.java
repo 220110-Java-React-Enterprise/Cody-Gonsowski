@@ -14,7 +14,7 @@ public class BankDepositMenu extends View {
         String input = "";
         Double inputAmount = 0.0;
         boolean isDouble = false;
-        boolean isPositive = false;
+        boolean isValid = false;
         
         System.out.println("\n============= DEPOSIT =============");
 
@@ -32,10 +32,7 @@ public class BankDepositMenu extends View {
                 isDouble = false;
             }
 
-        } while(!isDouble);
-
-        // perform transaction
-        do {
+            // perform transaction
             try {
                 // local
                 DataStore.getBank().deposit(inputAmount);
@@ -45,14 +42,14 @@ public class BankDepositMenu extends View {
 
                 // indicate positive transaction amount
                 //   this is checked by deposit(), but should loop here
-                isPositive = true;
+                isValid = true;
     
             } catch (InvalidAmountException e) {
                 System.out.println(e.getMessage());
-                isPositive = false;
+                isValid = false;
             }
 
-        } while (!isPositive);
+        } while(!isDouble || !isValid);
 
         System.out.println("===================================");
 
