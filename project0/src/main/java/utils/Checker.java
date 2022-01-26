@@ -4,8 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Checker contains a static helper method to
- *   check for validity of certain strings.
+ * Checker contains a static helper method to check for validity of certain strings.
  */
 public class Checker {
     /**

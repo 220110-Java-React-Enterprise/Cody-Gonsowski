@@ -3,6 +3,10 @@ package console;
 import utils.DataStore;
 import utils.InvalidAmountException;
 
+/**
+ * Menu that handles deposit transactions with the user.
+ *   Chains back to BankTransactionMenu upon completion.
+ */
 public class BankDepositMenu extends View {
     public BankDepositMenu() {
         viewName = "BankDepositMenu";

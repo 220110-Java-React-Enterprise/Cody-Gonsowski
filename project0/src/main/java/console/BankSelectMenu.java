@@ -4,6 +4,10 @@ import account.BankAccount;
 import list.CustomArrayList;
 import utils.DataStore;
 
+/**
+ * Menu that allows the user to select a BankAccount to make active.
+ *   Chains forward to BankTransactionMenu upon completion.
+ */
 public class BankSelectMenu extends View {
     public BankSelectMenu() {
         viewName = "BankSelectMenu";

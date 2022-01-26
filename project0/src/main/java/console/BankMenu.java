@@ -1,5 +1,11 @@
 package console;
 
+/**
+ * Menu that handles bank-related options.
+ *   Chains to BankCreateMenu, BankListMenu, & BankSelectMenu.
+ *   The user can navigate to the previous major menu, WelcomeMenu.
+ *   The user can exit the program from here.
+ */
 public class BankMenu extends View {
     public BankMenu() {
         viewName = "BankMenu";

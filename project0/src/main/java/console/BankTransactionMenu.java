@@ -5,6 +5,12 @@ import java.util.Locale;
 
 import utils.DataStore;
 
+/**
+ * Menu that handles transaction-related options.
+ *   Chains to BankDepositMenu & BankWithdrawalMenu.
+ *   The user can navigate to the previous major menu, BankMenu.
+ *   The user can exit the program from here.
+ */
 public class BankTransactionMenu extends View {
     public BankTransactionMenu() {
         viewName = "BankTransactionMenu";

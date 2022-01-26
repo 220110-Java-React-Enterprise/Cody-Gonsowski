@@ -3,6 +3,10 @@ package console;
 import utils.DataStore;
 import utils.InvalidAmountException;
 
+/**
+ * Menu that handles withdrawal transactions with the user.
+ *   Chains back to BankTransactionMenu upon completion.
+ */
 public class BankWithdrawalMenu extends View {
     public BankWithdrawalMenu() {
         viewName = "BankWithdrawalMenu";

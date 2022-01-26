@@ -12,14 +12,23 @@ import list.CustomArrayList;
 import utils.InvalidAmountException;
 
 public class BankAccountRepo implements DataSourceCRUD<BankAccount> {
-
     private Connection connection;
 
+
+    /**
+     * Retrieve the connection to database from ConnectionManager.
+     */
     public BankAccountRepo() {
         connection = ConnectionManager.getConnection();
     }
 
 
+    /**
+     * Creates a new entry in database provided a filled out model.
+     *   The id is auto-incremented and set into the returned model.
+     * @param model model to insert
+     * @return model provided + id
+     */
     @Override
     public BankAccount create(BankAccount model) {
         try {
@@ -43,6 +52,11 @@ public class BankAccountRepo implements DataSourceCRUD<BankAccount> {
     }
 
 
+    /**
+     * Returns a model that is filled out based on the given account id.
+     * @param id account id to read info from
+     * @return filled out model
+     */
     @Override
     public BankAccount read(Integer id) {
         // model to fill out
@@ -72,6 +86,11 @@ public class BankAccountRepo implements DataSourceCRUD<BankAccount> {
     }
 
 
+    /**
+     * Updates all non-id database info of a provided model based on the model's id.
+     * @param model model with info to be changed
+     * @return provided model
+     */
     @Override
     public BankAccount update(BankAccount model) {
         try {
@@ -90,6 +109,10 @@ public class BankAccountRepo implements DataSourceCRUD<BankAccount> {
     }
 
 
+    /**
+     * Deletes an entry from the database when provided with the account id.
+     * @param id account id of entry to delete
+     */
     @Override
     public void delete(Integer id) {
         try {

@@ -10,14 +10,23 @@ import database.ConnectionManager;
 import database.DataSourceCRUD;
 
 public class UserAccountRepo implements DataSourceCRUD<UserAccount> {
-
     private Connection connection;
 
+    
+    /**
+     * Retrieve the connection to database from ConnectionManager.
+     */
     public UserAccountRepo() {
         connection = ConnectionManager.getConnection();
     }
 
 
+    /**
+     * Creates a new entry in database provided a filled out model.
+     *   The id is auto-incremented and set into the returned model.
+     * @param model model to insert
+     * @return model provided + id
+     */
     @Override
     public UserAccount create(UserAccount model) {
         try {
@@ -45,6 +54,11 @@ public class UserAccountRepo implements DataSourceCRUD<UserAccount> {
     }
 
 
+    /**
+     * Returns a model that is filled out based on the given customer id.
+     * @param id customer id to read info from
+     * @return filled out model
+     */
     @Override
     public UserAccount read(Integer id) {
         // model to fill out
@@ -77,6 +91,11 @@ public class UserAccountRepo implements DataSourceCRUD<UserAccount> {
     }
 
 
+    /**
+     * Updates all non-id database info of a provided model based on the model's id.
+     * @param model model with info to be changed
+     * @return provided model
+     */
     @Override
     public UserAccount update(UserAccount model) {
         try {
@@ -98,6 +117,10 @@ public class UserAccountRepo implements DataSourceCRUD<UserAccount> {
     }
 
 
+    /**
+     * Deletes an entry from the database when provided with the customer id.
+     * @param id customer id of entry to delete
+     */
     @Override
     public void delete(Integer id) {
         try {

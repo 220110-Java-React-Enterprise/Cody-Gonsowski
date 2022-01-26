@@ -1,5 +1,10 @@
 package console;
 
+/**
+ * First menu that the user will see.
+ *   Chains to UserLoginMenu & UserRegisterMenu.
+ *   The user can exit the program from here.
+ */
 public class WelcomeMenu extends View {
     public WelcomeMenu() {
         viewName = "WelcomeMenu";

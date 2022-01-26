@@ -2,6 +2,11 @@ package console;
 
 import utils.DataStore;
 
+/**
+ * Menu that allows the user to login to an existing UserAccount.
+ *   Chains forward to BankMenu upon completion.
+ *   Chains back to WelcomeMenu upon failure.
+ */
 public class UserLoginMenu extends View {
     public UserLoginMenu() {
         viewName = "UserLoginMenu";

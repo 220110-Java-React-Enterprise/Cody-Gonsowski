@@ -3,6 +3,11 @@ package console;
 import account.BankAccount;
 import utils.DataStore;
 
+/**
+ * Menu that automatically creates a new account for the current active user.
+ *   Chains back to BankMenu upon completion.
+ *   !There is no user interaction in this menu.
+ */
 public class BankCreateMenu extends View {
     public BankCreateMenu() {
         viewName = "BankCreateMenu";

@@ -3,6 +3,10 @@ package console;
 import account.UserAccount;
 import utils.DataStore;
 
+/**
+ * Menu that allows the user to register a new UserAccount.
+ *   Chains back to WelcomeMenu upon completion.
+ */
 public class UserRegisterMenu extends View {
     public UserRegisterMenu() {
         viewName = "UserRegisterMenu";

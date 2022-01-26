@@ -7,6 +7,11 @@ import account.BankAccount;
 import list.CustomArrayList;
 import utils.DataStore;
 
+/**
+ * Menu that automatically lists all BankAccounts associated with current user.
+ *   Chains back to BankMenu upon completion.
+ *   !There is no user interaction in this menu.
+ */
 public class BankListMenu extends View {
     public BankListMenu() {
         viewName = "BankListMenu";

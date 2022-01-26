@@ -11,6 +11,12 @@ import console.BankWithdrawalMenu;
 import console.UserLoginMenu;
 import console.ViewManager;
 
+/**
+ * Main driver of the console bank program.
+ *   Initializes objects, registers views, and navigates through views
+ *   until the user quits.
+ * @param args command line arguments
+ */
 public class Main {
     public static void main(String[] args) {
         // load new objects for data sharing
@@ -31,10 +37,10 @@ public class Main {
         viewManager.registerView(new BankDepositMenu());
         viewManager.registerView(new BankWithdrawalMenu());
 
-        // navigate to main menu for the first menu
+        // navigate to welcome menu for the first menu
         viewManager.navigate("WelcomeMenu");
 
-        // call the next render method
+        // call the next render method until viewManager exits
         while(viewManager.isRunning()) {
             viewManager.render();
         }

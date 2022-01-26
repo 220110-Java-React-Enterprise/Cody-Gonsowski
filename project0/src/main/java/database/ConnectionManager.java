@@ -8,16 +8,19 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class ConnectionManager {
-    
-    //private static ConnectionManager connectionManager;
     private static Connection connection;
 
-    // empty private constructor
-    private ConnectionManager() {
 
-    }
+    /**
+     * Empty private constructor.
+     */
+    private ConnectionManager() {}
 
-    // singleton of connection object
+
+    /**
+     * Get the connection manager if it exists, otherwise make a new one.
+     * @return the singleton instance of ConnectionManager object
+     */
     public static Connection getConnection() {
         if(connection == null) {
             connection = connect();
@@ -26,13 +29,16 @@ public class ConnectionManager {
         return connection;
     }
 
+
+    /**
+     * Database connection logic.
+     * @return connection object created
+     */
     private static Connection connect() {
-        // connection logic here
         /**
          * jdbc:mariadb://<hostname>:<port>/<dbName>?user=<username>&password=<password>
-         *   replace <>
-        */
-
+         *   replace <> wtih respective information
+         */
         try {
             // make a Properties object
             Properties props = new Properties();
