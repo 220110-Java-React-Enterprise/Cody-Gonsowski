@@ -37,21 +37,23 @@ public class BankDepositMenu extends View {
             }
 
             // perform transaction
-            try {
-                // persist change
-                DataStore.getBankRepo().deposit(inputAmount, DataStore.getBank().getId());
+            if (isDouble) {
+                try {
+                    // persist change
+                    DataStore.getBankRepo().deposit(inputAmount, DataStore.getBank().getId());
 
-                // update local account to match database
-                DataStore.setBank(
-                    DataStore.getBankRepo().read(
-                        DataStore.getBank().getId()));
+                    // update local account to match database
+                    DataStore.setBank(
+                        DataStore.getBankRepo().read(
+                            DataStore.getBank().getId()));
 
-                // valid transaction has occurred
-                isValid = true;
-    
-            } catch (InvalidAmountException e) {
-                System.out.println(e.getMessage());
-                isValid = false;
+                    // valid transaction has occurred
+                    isValid = true;
+        
+                } catch (InvalidAmountException e) {
+                    System.out.println(e.getMessage());
+                    isValid = false;
+                }
             }
 
         } while(!isDouble || !isValid);

@@ -22,6 +22,14 @@ public class BankWithdrawalMenu extends View {
         
         System.out.println("\n=========== WITHDRAWAL ============");  // not balanced
 
+        if (DataStore.getBank().getBalance() < 0.01) {
+            // navigate back to transaction menu automatically so not stuck
+            System.out.println("Not enough funds to withdraw.\n Redirecting...");
+            viewManager.navigate("BankTransactionMenu");
+            System.out.println("===================================");
+            return;
+        }
+
         do {
             // get input from user
             System.out.print("Enter an amount to withdraw: ");
@@ -37,21 +45,23 @@ public class BankWithdrawalMenu extends View {
             }
 
             // perform transaction
-            try {
-                // persist change
-                DataStore.getBankRepo().withdrawal(inputAmount, DataStore.getBank().getId());
+            if (isDouble) {
+                try {
+                    // persist change
+                    DataStore.getBankRepo().withdrawal(inputAmount, DataStore.getBank().getId());
 
-                // update local account to match database
-                DataStore.setBank(
-                    DataStore.getBankRepo().read(
-                        DataStore.getBank().getId()));
+                    // update local account to match database
+                    DataStore.setBank(
+                        DataStore.getBankRepo().read(
+                            DataStore.getBank().getId()));
 
-                // valid transaction has occurred
-                isValid = true;
-    
-            } catch (InvalidAmountException e) {
-                System.out.println(e.getMessage());
-                isValid = false;
+                    // valid transaction has occurred
+                    isValid = true;
+        
+                } catch (InvalidAmountException e) {
+                    System.out.println(e.getMessage());
+                    isValid = false;
+                }
             }
 
         } while(!isDouble || !isValid);
